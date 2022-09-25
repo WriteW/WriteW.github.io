@@ -33,9 +33,25 @@
         <h1>Internet Explorer 9</h1>
         <p>Windows Internet Explorer 9（简称 IE9）于 2011 年 3 月 14 日发布.....</p>
       </article>
-      <audio src="music_02.wav">您的浏览器不支持 audio 标签。</audio>
-      
       <font id="a4">6</font>
-      
+      <audio src="music.mp3" controls></audio>
+<button id="btn">console.log</button>
+
+<script>
+    var btn = document.querySelector('#btn')
+    var audio = document.querySelector('audio')
+
+    btn.addEventListener('click', () => {
+        const length = audio.played.length
+        console.log(`length: ${length}`)
+
+        for (var i = 0; i < length; i++) {
+            var start = audio.played.start(i)
+            var end = audio.played.end(i)
+
+            console.log(`index: ${i}, start: ${start}, end: ${end}, durations: ${end - start}s`)
+        }
+    })
+</script>
 </body>
 </html>
