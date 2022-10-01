@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JFrame和Frame的区别</title>
+</head>
+<body>
+    <h1>JFrame与Frame的区别
+
+        问题的实质：这两者的区别实质在于一个是在awt包下，另一个是在swing包下。也就是这两个包的不同导致使用时的不同
+        AWT 是Abstract Window ToolKit (抽象窗口工具包)的缩写，这个工具包提供了一套与本地图形界面进行交互的接口。AWT 中的图形函数与操作系统所提供的图形函数之间有着一一对应的关系，我们把它称为peers。 也就是说，当我们利用 AWT 来构件图形用户界面的时候，我们实际上是在利用操作系统所提供的图形库。由于不同操作系统的图形库所提供的功能是不一样的，在一个平台上存在的功能在另外一个平台上则可能不存在。为了实现Java语言所宣称的"一次编译，到处运行"的概念，AWT 不得不通过牺牲功能来实现其平台无关性，也就是说，AWT 所提供的图形功能是各种通用型操作系统所提供的图形功能的交集。由于AWT 是依靠本地方法来实现其功能的，我们通常把AWT控件称为重量级控件。
+        Swing 是在AWT的基础上构建的一套新的图形界面系统，它提供了AWT 所能够提供的所有功能，并且用纯粹的Java代码对AWT 的功能进行了大幅度的扩充。例如说并不是所有的操作系统都提供了对树形控件的支持， Swing 利用了AWT 中所提供的基本作图方法对树形控件进行模拟。由于 Swing 控件是用100%的Java代码来实现的，因此在一个平台上设计的树形控件可以在其他平台上使用。由于在Swing 中没有使用本地方法来实现图形功能，我们通常把Swing控件称为轻量级控件。
+        AWT和Swing之间的基本区别：AWT 是基于本地方法的C/C++程序，其运行速度比较快；Swing是基于AWT 的Java程序，其运行速度比较慢。对于一个嵌入式应用来说，目标平台的硬件资源往往非常有限，而应用程序的运行速度又是项目中至关重要的因素。在这种矛盾的情况下，简单而高效的AWT 当然成了嵌入式Java的第一选择。而在普通的基于PC或者是工作站的标准Java应用中，硬件资源对应用程序所造成的限制往往不是项目中的关键因素，所以在标准版的Java中则提倡使用Swing， 也就是通过牺牲速度来实现应用程序的功能。
+        (1):我们可以在JFrame 对象中添加AWT 或者Swing 组件。JFrame中虽然有 add 方法，但是却不能直接用于添加 AWT 组件或者 Swing 组件，否则会抛出异常。因为你直接添加的话，会默认直接添加到根面板上，而内容面板则会覆盖根面板的内容。
+        JFrame 有一个Content Pane，窗口能显示的所有组件都是添加在这个Content Pane 中。JFrame 提供了两个方法：getContentPane 和setContentPane 就是用于获取和设置其Content Pane 的。
+        
+        对JFrame添加组件有两种方式：
+        
+        1)用getContentPane()方法获得JFrame的内容面板，再对其加入组件：frame.getContentPane().add(childComponent)
+        
+        2)建立一个Jpanel或JDesktopPane之类的中间容器，把组件添加到容器中，用setContentPane()方法把该容器置为JFrame的内容面板：
+        
+        Jpanel contentPane=newJpanel();
+        
+        ……//把其它组件添加到Jpanel中;
+        
+        frame.setContentPane(contentPane);
+        
+        //把contentPane对象设置成为frame的内容面板
+        
+        (2):在AMT组件中分为两大类，这两类的基类分别是Component和MenuComponent，其中，MenuComponent是所有与菜单相关组件的父类，Component则是除菜单外其他AMT组件的父类，它表示一个能以图形化方式显示出来，并可与用户交互的对象。
+        
+        Component类通常被称为组件，根据Component的不同作用，可将其分为基本组件类和容器类。基本组件类是按钮，文本框之类的，容器类则是通过Component的子类Container实例化的对象。Container又分为Window和Pannel，Window又分为Frame和Dialog，Frame是窗体，Dialog是对话框。Panel是中间容器。
+        ————————————————
+        版权声明：本文为CSDN博主「保护wo方小白」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+        原文链接：https://blog.csdn.net/weixin_41072572/article/details/124640074</h1>
+</body>
+</html>
